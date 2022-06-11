@@ -81,6 +81,11 @@ function reducer(state=initialState,action){
                 ...state,
                 detail: []
             }
+            case "LOADER_FALSE":
+                return{
+                    ...state,
+                    loading: action.payload
+                }
         default: return state;    
     }
 }

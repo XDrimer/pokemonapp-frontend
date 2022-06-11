@@ -24,7 +24,7 @@ export function getPokemonName(name){
             let poke = await axios.get(`https://pokemonappxdrimer.herokuapp.com/pokemons/?name=${name}`)
             return dispatch({type: GET_POKENAME, payload: poke.data})
         }catch(err){
-            console.log(err.response.data);
+            dispatch({type: LOADER_FALSE, payload: false})
         }
     }
 }
