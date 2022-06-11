@@ -10,6 +10,7 @@ const FILTER_ATTACK = "FILTER_ATTACK";
 const GET_POKENAME = "GET_POKENAME";
 const CLEAN_POKEMONS = "CLEAN_POKEMONS";
 const CLEAN_DETAIL = "CLEAN_DETAIL";
+const LOADER_FALSE = "LOADER_FALSE";
  
 export function getPokemons(){
     return (dispatch)=>{
