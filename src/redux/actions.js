@@ -1,5 +1,4 @@
 import axios from "axios";
-const backUrl = "pokemonapp-backend-production.up.railway.app"
 const GET_POKEMONS = "GET_POKEMONS";
 const GET_TYPES = "GET_TYPES";
 const GET_DETAIL = "GET_DETAIL";
@@ -14,15 +13,15 @@ const LOADER_FALSE = "LOADER_FALSE";
  
 export function getPokemons(){
     return (dispatch)=>{
-    return axios.get(`${backUrl}/pokemons`)
-    .then(r=>dispatch({type: GET_POKEMONS, payload: r.data}))
+        return axios.get(`/pokemons`).then((r)=>
+            dispatch({type: GET_POKEMONS, payload: r.data}))
 }
 }
 
 export function getPokemonName(name){
     return async function(dispatch){
         try{
-            let poke = await axios.get(`${backUrl}/pokemons/?name=${name}`)
+            let poke = await axios.get(`/pokemons/?name=${name}`)
             return dispatch({type: GET_POKENAME, payload: poke.data})
         }catch(err){
             dispatch({type: LOADER_FALSE, payload: false})
@@ -33,7 +32,7 @@ export function getPokemonName(name){
 export function getPokemonById(id){
     return async function(dispatch){
         try{
-            let poke =  await axios.get(`${backUrl}/pokemons/${id}`)
+            let poke =  await axios.get(`/pokemons/${id}`)
             return dispatch({type: GET_DETAIL, payload: poke.data})
         }catch(err){
             console.log(err.response.data)
@@ -43,7 +42,7 @@ export function getPokemonById(id){
 
 export function getTypes(){
     return (dispatch)=>{
-    return axios.get(`${backUrl}/types`)
+    return axios.get(`/types`)
     .then(r=>dispatch({type: GET_TYPES, payload: r.data}))
 }
 }
@@ -74,7 +73,7 @@ export function cleanDetail(){
 
 export function postPokemon(data){
     return async function(dispatch){
-        const post = await axios.post(`${backUrl}/pokemons`,data)
+        const post = await axios.post(`/pokemons`,data)
         return post;
     }
 }
