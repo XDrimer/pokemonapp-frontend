@@ -1,5 +1,5 @@
 import axios from "axios";
-
+const backUrl = "pokemonapp-backend-production.up.railway.app"
 const GET_POKEMONS = "GET_POKEMONS";
 const GET_TYPES = "GET_TYPES";
 const GET_DETAIL = "GET_DETAIL";
@@ -14,7 +14,7 @@ const LOADER_FALSE = "LOADER_FALSE";
  
 export function getPokemons(){
     return (dispatch)=>{
-    return axios.get("https://pokemonappxdrimer.herokuapp.com/pokemons")
+    return axios.get(`${backUrl}/pokemons`)
     .then(r=>dispatch({type: GET_POKEMONS, payload: r.data}))
 }
 }
@@ -22,7 +22,7 @@ export function getPokemons(){
 export function getPokemonName(name){
     return async function(dispatch){
         try{
-            let poke = await axios.get(`https://pokemonappxdrimer.herokuapp.com/pokemons/?name=${name}`)
+            let poke = await axios.get(`${backUrl}/pokemons/?name=${name}`)
             return dispatch({type: GET_POKENAME, payload: poke.data})
         }catch(err){
             dispatch({type: LOADER_FALSE, payload: false})
@@ -33,7 +33,7 @@ export function getPokemonName(name){
 export function getPokemonById(id){
     return async function(dispatch){
         try{
-            let poke =  await axios.get(`https://pokemonappxdrimer.herokuapp.com/pokemons/${id}`)
+            let poke =  await axios.get(`${backUrl}/pokemons/${id}`)
             return dispatch({type: GET_DETAIL, payload: poke.data})
         }catch(err){
             console.log(err.response.data)
@@ -43,7 +43,7 @@ export function getPokemonById(id){
 
 export function getTypes(){
     return (dispatch)=>{
-    return axios.get("https://pokemonappxdrimer.herokuapp.com/types")
+    return axios.get(`${backUrl}/types`)
     .then(r=>dispatch({type: GET_TYPES, payload: r.data}))
 }
 }
@@ -74,7 +74,7 @@ export function cleanDetail(){
 
 export function postPokemon(data){
     return async function(dispatch){
-        const post = await axios.post("https://pokemonappxdrimer.herokuapp.com/pokemons",data)
+        const post = await axios.post(`${backUrl}/pokemons`,data)
         return post;
     }
 }

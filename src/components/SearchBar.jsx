@@ -9,8 +9,8 @@ function SearchBar({setCurrentPage}){
     const dispatch = useDispatch()
 
     function handleChange(e){
-        e.preventDefault()
-        setInput(e.target.value)
+        e.preventDefault();
+        setInput(e.target.value);
     }
 
     function getPokemon(e){
